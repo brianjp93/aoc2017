@@ -25,7 +25,6 @@ def get_firewall():
     return firewall
 
 def step_scanners(firewall):
-    # firewall = copy.deepcopy(firewall)
     for val in firewall.values():
         val[2] = (val[2] + 1) % val[1]
     return firewall
