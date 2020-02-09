@@ -22,12 +22,8 @@ class Particle:
         return sum(abs(x) for x in self.acc)
 
     def next(self):
-        self.pos[0] += self.vel[0]
-        self.pos[1] += self.vel[1]
-        self.pos[2] += self.vel[2]
-        self.vel[0] += self.acc[0]
-        self.vel[1] += self.acc[1]
-        self.vel[2] += self.acc[2]
+        self.vel = [a+b for a, b in zip(self.vel, self.acc)]
+        self.pos = [a+b for a, b in zip(self.pos, self.vel)]
 
 
 def remove_collisions(particles):
@@ -42,7 +38,7 @@ def remove_collisions(particles):
     return nparticles
 
 
-with open(tpath, 'r') as f:
+with open(dpath, 'r') as f:
     data = f.read().splitlines()
 
 particles = []
@@ -64,9 +60,14 @@ while True:
     if i % 10_000 == 0:
         print(f'Loop: {i}')
         print(len(particles))
-    particles = remove_collisions(particles)
-    # print(particles[0])
+    positions = {}
     for p in particles:
         p.next()
+        key = tuple(p.pos)
+        positions[key] = positions.get(key, []) + [p]
+    particles = []
+    for plist in positions.values():
+        if len(plist) == 1:
+            particles.append(plist[0])
     i += 1
 
