@@ -113,5 +113,5 @@ v.do_next(COUNT)
 print(f'Part 2: {v.infected_burst_count}')
 end = time.perf_counter()
 
-print(f'Time: {(end-start):2f}')
+print(f'Time: {(end-start):.2f}')
 
