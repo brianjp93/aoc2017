@@ -106,7 +106,7 @@ with open(dpath, 'r') as f:
 # d.run_until_finished()
 # print(d.mul_count)
 
-d = Duet(list(data), registers={'a': 1, 'b': 109900, 'c': 126900, 'f': 0, 'd': 2, 'e': 109899, 'g': 62}, i=17)
+d = Duet(list(data), registers={'a': 1})
+# d = Duet(list(data), registers={'a': 1, 'b': 109900, 'c': 126900, 'f': 0, 'd': 2, 'e': 109899, 'g': 62}, i=17)
 d.run_until_finished()
-
 
